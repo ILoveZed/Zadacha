@@ -1,0 +1,29 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/obj/Debug/net8.0/scopedcss/projectbundle/Zadacha.bundle.scp.css",
+      "PackagePath": "staticwebassets/Zadacha.bundle.scp.css"
+    },
+    {
+      "Id": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/wwwroot/app.css",
+      "PackagePath": "staticwebassets/app.css"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.Zadacha.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.build.Zadacha.props",
+      "PackagePath": "build\\Zadacha.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildMultiTargeting.Zadacha.props",
+      "PackagePath": "buildMultiTargeting\\Zadacha.props"
+    },
+    {
+      "Id": "obj/Debug/net8.0/staticwebassets/msbuild.buildTransitive.Zadacha.props",
+      "PackagePath": "buildTransitive\\Zadacha.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

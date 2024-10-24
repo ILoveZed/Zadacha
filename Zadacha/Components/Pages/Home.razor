@@ -1,0 +1,81 @@
+﻿@page "/"
+@using System.Text.RegularExpressions
+@using System.Linq;
+@using System.Text
+@inject IJSRuntime JSRuntime
+
+
+
+<div class="container">
+    <h1>Upload File</h1>
+    <form action="/action_page.php">
+        <InputFile OnChange="HandleFileSelected"></InputFile>
+    </form>
+</div>
+
+
+<style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+</style>
+
+@code
+{
+    private string? fileContent;
+    private Dictionary<string, int> elementCount = new();
+    
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        var stream = file.OpenReadStream(maxAllowedSize: file.Size);
+        var sb = new StringBuilder();
+        using var reader = new StreamReader(stream);
+        fileContent = await reader.ReadToEndAsync();
+        string[] lines = fileContent.Split(new [] {"\r\n", "\r", "\n"}, StringSplitOptions.None);
+        Regex regex = new Regex("(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}).*?\\s80\\sGET", RegexOptions.IgnoreCase);
+
+        
+
+        foreach (var line in lines)
+        {
+            Match matches = regex.Match(line);
+            if (!matches.Groups[1].ToString().Contains("207.114") && matches.Success)
+            {
+                if (elementCount.ContainsKey(matches.Groups[1].Value))
+                {
+                    elementCount[matches.Groups[1].Value]++;
+                }
+                else
+                {
+                    elementCount[matches.Groups[1].Value] = 1;
+                }
+            }
+        }
+
+        var sortedItems = elementCount
+            .OrderByDescending(kvp => kvp.Value)
+            .ThenByDescending(kvp => int.Parse(kvp.Key.Split('.')[0]));
+
+        var csvContent = GenerateCsvContent(sortedItems);
+        
+        await JSRuntime.InvokeVoidAsync("downloadFileFromStream", "output.csv", csvContent);
+    }
+    
+    private string GenerateCsvContent(IOrderedEnumerable<KeyValuePair<string, int>> data)
+    {
+        var sb = new StringBuilder();
+        sb.AppendLine("Count, IP Address");
+
+        foreach (var kvp in data)
+        {
+            sb.AppendLine($"{kvp.Value},{kvp.Key}");
+        }
+
+        return sb.ToString();
+    }
+}

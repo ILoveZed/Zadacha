@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="/"/>
+    <link rel="stylesheet" href="app.css"/>
+    <link rel="stylesheet" href="Zadacha.styles.css"/>
+    <HeadOutlet/>
+</head>
+
+<body>
+<Routes @rendermode=RenderMode.InteractiveServer />
+<script src="_framework/blazor.web.js"></script>
+<script>
+    function downloadFileFromStream(filename, content) {
+        const blob = new Blob([content], { type: 'csv' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = filename;
+
+        link.click();
+
+        URL.revokeObjectURL(link.href);
+    }
+</script>
+
+</body>
+
+</html>

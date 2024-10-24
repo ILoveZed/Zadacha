@@ -1,0 +1,77 @@
+{
+  "Version": 1,
+  "Hash": "1y2YoNN6w9nckYwGPjtq3FJ3v8Z3rtadHyEaQm4ycKM=",
+  "Source": "Zadacha",
+  "BasePath": "_content/Zadacha",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "Zadacha/wwwroot",
+      "Source": "Zadacha",
+      "ContentRoot": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/wwwroot/",
+      "BasePath": "_content/Zadacha",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/obj/Debug/net8.0/scopedcss/bundle/Zadacha.styles.css",
+      "SourceId": "Zadacha",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/obj/Debug/net8.0/scopedcss/bundle/",
+      "BasePath": "_content/Zadacha",
+      "RelativePath": "Zadacha.styles.css",
+      "AssetKind": "All",
+      "AssetMode": "CurrentProject",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ApplicationBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/obj/Debug/net8.0/scopedcss/bundle/Zadacha.styles.css"
+    },
+    {
+      "Identity": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/obj/Debug/net8.0/scopedcss/projectbundle/Zadacha.bundle.scp.css",
+      "SourceId": "Zadacha",
+      "SourceType": "Computed",
+      "ContentRoot": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/obj/Debug/net8.0/scopedcss/projectbundle/",
+      "BasePath": "_content/Zadacha",
+      "RelativePath": "Zadacha.bundle.scp.css",
+      "AssetKind": "All",
+      "AssetMode": "Reference",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "ScopedCss",
+      "AssetTraitValue": "ProjectBundle",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/obj/Debug/net8.0/scopedcss/projectbundle/Zadacha.bundle.scp.css"
+    },
+    {
+      "Identity": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/wwwroot/app.css",
+      "SourceId": "Zadacha",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/luboslavstankov/RiderProjects/Zadacha/Zadacha/wwwroot/",
+      "BasePath": "_content/Zadacha",
+      "RelativePath": "app.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/app.css"
+    }
+  ]
+}
