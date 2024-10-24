@@ -63,7 +63,7 @@
 
         var csvContent = GenerateCsvContent(sortedItems);
         
-        await JSRuntime.InvokeVoidAsync("downloadFileFromStream", "output.csv", csvContent);
+        await JSRuntime.InvokeVoidAsync("downloadFileFromStream", "report.csv", csvContent);
     }
     
     private string GenerateCsvContent(IOrderedEnumerable<KeyValuePair<string, int>> data)
