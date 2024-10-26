@@ -35,15 +35,20 @@
         var stream = file.OpenReadStream(maxAllowedSize: file.Size);
         var sb = new StringBuilder();
         using var reader = new StreamReader(stream);
-        fileContent = await reader.ReadToEndAsync();
-        string[] lines = fileContent.Split(new [] {"\r\n", "\r", "\n"}, StringSplitOptions.None);
-        Regex regex = new Regex("(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}).*?\\s80\\sGET", RegexOptions.IgnoreCase);
+        string? data;
+        while ((data = await reader.ReadLineAsync()) != null)
+        {
+            sb.AppendLine(data);
+        }
+        fileContent = sb.ToString();
+        var lines = fileContent.Split(new [] {"\r\n", "\r", "\n"}, StringSplitOptions.None);
+        var regex = new Regex("(\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}).*?\\s80\\sGET", RegexOptions.IgnoreCase);
 
         
 
         foreach (var line in lines)
         {
-            Match matches = regex.Match(line);
+            var matches = regex.Match(line);
             if (!matches.Groups[1].ToString().Contains("207.114") && matches.Success)
             {
                 if (elementCount.ContainsKey(matches.Groups[1].Value))
@@ -57,13 +62,22 @@
             }
         }
 
-        var sortedItems = elementCount
-            .OrderByDescending(kvp => kvp.Value)
-            .ThenByDescending(kvp => int.Parse(kvp.Key.Split('.')[0]));
+        try
+        {
+            var sortedItems = elementCount
+                .OrderByDescending(kvp => kvp.Value)
+                .ThenByDescending(kvp => ConvertIpToTuple(kvp.Key));
 
-        var csvContent = GenerateCsvContent(sortedItems);
+            var csvContent = GenerateCsvContent(sortedItems);
         
-        await JSRuntime.InvokeVoidAsync("downloadFileFromStream", "output.csv", csvContent);
+            await JSRuntime.InvokeVoidAsync("downloadFileFromStream", "report.csv", csvContent);
+        }
+        catch (Exception exception)
+        {
+            Console.WriteLine(exception);
+            throw;
+        }
+        
     }
     
     private string GenerateCsvContent(IOrderedEnumerable<KeyValuePair<string, int>> data)
@@ -77,5 +91,11 @@
         }
 
         return sb.ToString();
+    }
+    
+    static Tuple<int, int, int, int> ConvertIpToTuple(string ipAddress)
+    {
+        var octets = ipAddress.Split('.').Select(int.Parse).ToArray();
+        return Tuple.Create(octets[0], octets[1], octets[2], octets[3]);
     }
 }
